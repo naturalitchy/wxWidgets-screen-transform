@@ -25,6 +25,23 @@ class MainFrame : public wxFrame {
 		wxBoxSizer *sizerDofTestInner;		// Right position(6DOF Test design) Sizer.
 		wxBoxSizer *sizerDofTest;			// Right position(6DOF Test) Sizer. (Add sizerDofTestInner)
 		
+		// Setting the Menu button.
+		wxButton *btnGameList;
+		wxButton *btnDofTest;
+		
+		// Setting the Game List button.
+		wxButton *btnAssetto;
+		wxButton *btnEuroTruck;
+
+		// Setting the 6DOF Test button.
+		wxButton *btnPitchTest;
+		wxButton *btnRollTest;
+
+
+		// Setting the button event.
+		void ShowGameList(const wxCommandEvent &evt);
+		void ShowDofTest(const wxCommandEvent &evt);
+		
 
 };
 
