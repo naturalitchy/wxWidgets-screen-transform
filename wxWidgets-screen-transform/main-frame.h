@@ -10,10 +10,10 @@ class MainFrame : public wxFrame {
 		MainFrame(const wxString &title);
 
 		// Setting the basic panel.
-		wxPanel *contentTop;
-		wxPanel *contentMenu;
-		wxPanel *contentGameList;
-		wxPanel *contentDofTest;
+		wxScrolledWindow *contentTop;
+		wxScrolledWindow *contentMenu;
+		wxScrolledWindow *contentGameList;
+		wxScrolledWindow *contentDofTest;
 		
 		// Setting the basic sizer.
 		wxBoxSizer *sizerMain;				// Main Sizer.

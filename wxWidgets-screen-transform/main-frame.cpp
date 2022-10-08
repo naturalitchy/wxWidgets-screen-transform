@@ -5,17 +5,14 @@ MainFrame::MainFrame(const wxString &title)
 	CreateStatusBar();
 
 	// Create Panel.
-	//contentTop = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(-1,100));
-	//contentMenu = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(150,-1));
-	contentTop = new wxPanel(this);
-	contentMenu = new wxPanel(this);
-	contentGameList = new wxPanel(this);
-	contentDofTest = new wxPanel(this);
+	contentTop = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxSize(-1,100));
+	contentMenu = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxSize(150,-1));
+	contentGameList = new wxScrolledWindow(this);
+	contentDofTest = new wxScrolledWindow(this);
 	contentTop->SetBackgroundColour(*wxRED);
 	contentMenu->SetBackgroundColour(*wxBLUE);
 	contentGameList->SetBackgroundColour(*wxBLACK);
 	contentDofTest->SetBackgroundColour(*wxGREEN);
-	
 	
 	// Create Sizer.
 	sizerMain = new wxBoxSizer(wxHORIZONTAL);
@@ -33,6 +30,7 @@ MainFrame::MainFrame(const wxString &title)
 	sizerMenu->Add(btnGameList, 0, wxEXPAND | wxALL, 10);
 	sizerMenu->Add(btnDofTest, 0, wxEXPAND | wxALL, 10);
 	contentMenu->SetSizer(sizerMenu);
+	btnGameList->Bind(wxEVT_BUTTON, &MainFrame::ShowGameList, this);		// "Game List" button click event.
 	btnDofTest->Bind(wxEVT_BUTTON, &MainFrame::ShowDofTest, this);			// "6DOF Test" button click event.
 
 	// Create Game List Box.
@@ -53,12 +51,12 @@ MainFrame::MainFrame(const wxString &title)
 	sizerDofTest->ShowItems(false);									// for only show "Game List"
 
 	// Setting the Sizers.
-	sizerTop->Add(contentTop, 1, wxEXPAND | wxALL);
-	sizerContent->Add(sizerTop, 1, wxEXPAND | wxALL);
-	sizerContent->Add(sizerGameList, 4, wxEXPAND | wxALL);
-	sizerContent->Add(sizerDofTest, 4, wxEXPAND | wxALL);
-	sizerMain->Add(contentMenu, 1, wxEXPAND | wxALL);
-	sizerMain->Add(sizerContent, 4, wxEXPAND | wxALL);
+	sizerTop->Add(contentTop, 0, wxEXPAND | wxALL);
+	sizerContent->Add(sizerTop, 0, wxEXPAND | wxALL);
+	sizerContent->Add(sizerGameList, 1, wxEXPAND | wxALL);
+	sizerContent->Add(sizerDofTest, 1, wxEXPAND | wxALL);
+	sizerMain->Add(contentMenu, 0, wxEXPAND | wxALL);
+	sizerMain->Add(sizerContent, 1, wxEXPAND | wxALL);
 	
 	
 	
@@ -69,6 +67,13 @@ MainFrame::MainFrame(const wxString &title)
 void MainFrame::ShowDofTest(const wxCommandEvent &evt) {
 	sizerGameList->ShowItems(false);
 	sizerDofTest->ShowItems(true);
+
+	sizerMain->Layout();
+}
+
+void MainFrame::ShowGameList(const wxCommandEvent &evt) {
+	sizerDofTest->ShowItems(false);
+	sizerGameList->ShowItems(true);
 
 	sizerMain->Layout();
 }
