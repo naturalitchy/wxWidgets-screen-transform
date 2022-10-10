@@ -5,9 +5,10 @@
 
 class MainFrame : public wxFrame {
 	private:
-	void SetTopPaint(const wxEvent &evt);			// Set Paint.
-	void SetMenuPaint(const wxEvent &evt);			// Set Paint.
-	void SetGameListPaint(const wxEvent &evt);		// Set Paint.
+	void SetTopPaint(const wxEvent &evt);			// Set Top Paint.
+	void SetMenuPaint(const wxEvent &evt);			// Set Menu Paint.
+	void SetGameListPaint(const wxEvent &evt);		// Set Game List Paint.
+	void SetDofTestPaint(const wxEvent &evt);		// Set 6DOF Test Paint
 
 	public:
 		MainFrame(const wxString &title);

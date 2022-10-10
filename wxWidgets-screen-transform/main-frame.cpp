@@ -12,7 +12,8 @@ MainFrame::MainFrame(const wxString &title)
 	contentTop->Bind(wxEVT_PAINT, &MainFrame::SetTopPaint, this);
 	contentMenu->Bind(wxEVT_PAINT, &MainFrame::SetMenuPaint, this);
 	contentGameList->Bind(wxEVT_PAINT, &MainFrame::SetGameListPaint, this);
-	//contentDofTest->Bind(wxEVT_PAINT, &MainFrame::SetGameListPaint, this);
+	contentDofTest->Bind(wxEVT_PAINT, &MainFrame::SetDofTestPaint, this);
+
 	//contentTop->SetBackgroundColour(*wxRED);
 	//contentMenu->SetBackgroundColour(*wxBLUE);
 	//contentGameList->SetBackgroundColour(*wxBLACK);
@@ -39,7 +40,7 @@ MainFrame::MainFrame(const wxString &title)
 
 	// Create Game List Box.
 	btnAssetto = new wxButton(contentGameList, wxID_ANY, "Assetto Corsa", wxPoint(50,100), wxSize(150,50));
-	btnEuroTruck = new wxButton(contentGameList, wxID_ANY, "Euro Truck", wxPoint(50,550), wxSize(150, 50));
+	btnEuroTruck = new wxButton(contentGameList, wxID_ANY, "Euro Truck", wxPoint(50,200), wxSize(150, 50));
 	/* for free button.
 	sizerGameListInner->Add(btnAssetto, 0, wxEXPAND | wxALL);
 	sizerGameListInner->Add(btnEuroTruck, 0, wxEXPAND | wxALL);
@@ -72,9 +73,9 @@ void MainFrame::SetTopPaint(const wxEvent &evt) {
 	wxPaintDC dc(contentTop);
 	wxRect clientRect = GetClientRect();
 	wxRect gradientRect = clientRect;
-	dc.GradientFillLinear(gradientRect, wxColour(30, 30, 35), wxColour(28, 28, 33), wxSOUTH);
+	dc.GradientFillLinear(gradientRect, wxColour(40, 40, 45), wxColour(38, 38, 43), wxSOUTH);
 	gradientRect.Offset(0, gradientRect.GetHeight());
-	dc.GradientFillLinear(gradientRect, wxColour(26, 26, 31), wxColour(24, 24, 29), wxSOUTH);
+	dc.GradientFillLinear(gradientRect, wxColour(36, 36, 41), wxColour(34, 34, 39), wxSOUTH);
 
 	dc.SetPen(wxColor(255, 0, 0));
 	dc.SetBrush(*wxTRANSPARENT_BRUSH);
@@ -88,9 +89,9 @@ void MainFrame::SetMenuPaint(const wxEvent &evt) {
 	wxPaintDC dc(contentMenu);
 	wxRect clientRect = GetClientRect();
 	wxRect gradientRect = clientRect;
-	dc.GradientFillLinear(gradientRect, wxColour(50, 50, 55), wxColour(48, 48, 53), wxSOUTH);
+	dc.GradientFillLinear(gradientRect, wxColour(40, 40, 45), wxColour(38, 38, 43), wxSOUTH);
 	gradientRect.Offset(0, gradientRect.GetHeight());
-	dc.GradientFillLinear(gradientRect, wxColour(46, 46, 51), wxColour(44, 44, 49), wxSOUTH);
+	dc.GradientFillLinear(gradientRect, wxColour(36, 36, 41), wxColour(34, 34, 39), wxSOUTH);
 
 	dc.SetPen(wxColor(255, 0, 0));
 	dc.SetBrush(*wxTRANSPARENT_BRUSH);
@@ -114,16 +115,34 @@ void MainFrame::SetGameListPaint(const wxEvent &evt) {
 	dc.SetFont(GetFont());
 	dc.SetTextForeground(GetForegroundColour());
 }
+
+void MainFrame::SetDofTestPaint(const wxEvent &evt) {
+	wxLogStatus("execute");
+	wxPaintDC dc(contentDofTest);
+	wxRect clientRect = GetClientRect();
+	wxRect gradientRect = clientRect;
+	dc.GradientFillLinear(gradientRect, wxColour(40, 40, 45), wxColour(38, 38, 43), wxSOUTH);
+	gradientRect.Offset(0, gradientRect.GetHeight());
+	dc.GradientFillLinear(gradientRect, wxColour(36, 36, 41), wxColour(34, 34, 39), wxSOUTH);
+
+	dc.SetPen(wxColor(255, 0, 0));
+	dc.SetBrush(*wxTRANSPARENT_BRUSH);
+	dc.DrawRectangle(0, 0, clientRect.GetWidth(), clientRect.GetHeight());
+	dc.SetFont(GetFont());
+	dc.SetTextForeground(GetForegroundColour());
+}
+
+
+//-----------------------------------------------
+// Button event
+//-----------------------------------------------
 void MainFrame::ShowDofTest(const wxCommandEvent &evt) {
 	sizerGameList->ShowItems(false);
 	sizerDofTest->ShowItems(true);
-
 	sizerMain->Layout();
 }
-
 void MainFrame::ShowGameList(const wxCommandEvent &evt) {
 	sizerDofTest->ShowItems(false);
 	sizerGameList->ShowItems(true);
-
 	sizerMain->Layout();
 }
