@@ -14,11 +14,6 @@ MainFrame::MainFrame(const wxString &title)
 	contentGameList->Bind(wxEVT_PAINT, &MainFrame::SetGameListPaint, this);
 	contentDofTest->Bind(wxEVT_PAINT, &MainFrame::SetDofTestPaint, this);
 
-	//contentTop->SetBackgroundColour(*wxRED);
-	//contentMenu->SetBackgroundColour(*wxBLUE);
-	//contentGameList->SetBackgroundColour(*wxBLACK);
-	//contentDofTest->SetBackgroundColour(*wxGREEN);
-	
 	// Create Sizer.
 	sizerMain = new wxBoxSizer(wxHORIZONTAL);
 	sizerTop = new wxBoxSizer(wxVERTICAL);
@@ -30,18 +25,22 @@ MainFrame::MainFrame(const wxString &title)
 	sizerDofTest = new wxBoxSizer(wxVERTICAL);
 
 	// Create Menu Box.
-	btnGameList = new wxButton(contentMenu, wxID_ANY, "Game List", wxDefaultPosition, wxSize(50, 100));
-	btnDofTest = new wxButton(contentMenu, wxID_ANY, "6DOF Test", wxDefaultPosition, wxSize(50, 100));
+	btnGameList = new wxButton(contentMenu, wxID_ANY, "Game List", wxPoint(25,25), wxSize(100, 50));
+	btnDofTest = new wxButton(contentMenu, wxID_ANY, "6DOF Test", wxPoint(25, 100), wxSize(100, 50));
+	/* delete code. (for free position button)
 	sizerMenu->Add(btnGameList, 0, wxEXPAND | wxALL, 10);
 	sizerMenu->Add(btnDofTest, 0, wxEXPAND | wxALL, 10);
 	contentMenu->SetSizer(sizerMenu);
+	*/
 	btnGameList->Bind(wxEVT_BUTTON, &MainFrame::ShowGameList, this);		// "Game List" button click event.
 	btnDofTest->Bind(wxEVT_BUTTON, &MainFrame::ShowDofTest, this);			// "6DOF Test" button click event.
 
 	// Create Game List Box.
 	btnAssetto = new wxButton(contentGameList, wxID_ANY, "Assetto Corsa", wxPoint(50,100), wxSize(150,50));
-	btnEuroTruck = new wxButton(contentGameList, wxID_ANY, "Euro Truck", wxPoint(50,200), wxSize(150, 50));
-	/* for free button.
+	//btnEuroTruck = new wxButton(contentGameList, wxID_ANY, "Euro Truck", wxPoint(50, 200), wxSize(150, 50));
+	btnEuroTruck = new wxBitmapButton(contentGameList, wxID_ANY, wxBitmap(wxT("../button-custom.png"), wxBITMAP_TYPE_PNG), wxPoint(50, 200), wxSize(150,50));
+	btnAssetto->SetBackgroundColour(wxColour(40, 40, 45));
+	/* delete code. (for free position button)
 	sizerGameListInner->Add(btnAssetto, 0, wxEXPAND | wxALL);
 	sizerGameListInner->Add(btnEuroTruck, 0, wxEXPAND | wxALL);
 	contentGameList->SetSizer(sizerGameListInner);

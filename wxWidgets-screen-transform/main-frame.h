@@ -35,7 +35,7 @@ class MainFrame : public wxFrame {
 		
 		// Setting the Game List button.
 		wxButton *btnAssetto;
-		wxButton *btnEuroTruck;
+		wxBitmapButton *btnEuroTruck;
 
 		// Setting the 6DOF Test button.
 		wxButton *btnPitchTest;

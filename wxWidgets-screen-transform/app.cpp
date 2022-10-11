@@ -6,9 +6,8 @@ bool App::OnInit() {
 	mainFrame->Center();
 
 	// Setting the title icon. ico => TYPE_ICO.
-	//wxIcon icon(wxT("../rect.ico"), wxBITMAP_TYPE_ICO);
-	//wxIcon icon(wxT("../rect.ico"), wxBITMAP_TYPE_JPEG);
-	//mainFrame->SetIcon(icon);
+	wxIcon icon(wxT("../rect.ico"), wxBITMAP_TYPE_ICO);
+	mainFrame->SetIcon(icon);
 
 	mainFrame->Show();
 
