@@ -35,7 +35,8 @@ class MainFrame : public wxFrame {
 		
 		// Setting the Game List button.
 		wxButton *btnAssetto;
-		wxBitmapButton *btnEuroTruck;
+		wxButton *btnEuroTruck;
+		//wxBitmapButton *btnEuroTruck;
 
 		// Setting the 6DOF Test button.
 		wxButton *btnPitchTest;
@@ -45,6 +46,10 @@ class MainFrame : public wxFrame {
 		// Setting the button event.
 		void ShowGameList(const wxCommandEvent &evt);
 		void ShowDofTest(const wxCommandEvent &evt);
+
+		// Setting the default button click event.
+		void ClickButton(const wxCommandEvent &evt);
+		void ClickButton2(const wxCommandEvent &evt);
 		
 
 };

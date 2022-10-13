@@ -36,10 +36,13 @@ MainFrame::MainFrame(const wxString &title)
 	btnDofTest->Bind(wxEVT_BUTTON, &MainFrame::ShowDofTest, this);			// "6DOF Test" button click event.
 
 	// Create Game List Box.
-	btnAssetto = new wxButton(contentGameList, wxID_ANY, "Assetto Corsa", wxPoint(50,100), wxSize(150,50));
-	//btnEuroTruck = new wxButton(contentGameList, wxID_ANY, "Euro Truck", wxPoint(50, 200), wxSize(150, 50));
-	btnEuroTruck = new wxBitmapButton(contentGameList, wxID_ANY, wxBitmap(wxT("../button-custom.png"), wxBITMAP_TYPE_PNG), wxPoint(50, 200), wxSize(150,50));
-	btnAssetto->SetBackgroundColour(wxColour(40, 40, 45));
+	btnAssetto = new wxButton(contentGameList, wxID_ANY, "Assetto Corsa", wxPoint(50,100), wxSize(150,50), wxBORDER_NONE);
+	btnEuroTruck = new wxButton(contentGameList, wxID_ANY, "Euro Truck", wxPoint(50, 200), wxSize(150, 50), wxBORDER_NONE);
+	//btnEuroTruck = new wxBitmapButton(contentGameList, wxID_ANY, wxBitmap(wxT("button-custom-ico.ico"), wxBITMAP_TYPE_ICO), wxPoint(50, 200), wxSize(150,50));
+	btnEuroTruck->Bind(wxEVT_BUTTON, &MainFrame::ClickButton, this);		// default click event.
+	btnAssetto->Bind(wxEVT_BUTTON, &MainFrame::ClickButton2, this);		// default click event.
+	btnAssetto->SetBackgroundColour(wxColour(50, 60, 75));
+
 	/* delete code. (for free position button)
 	sizerGameListInner->Add(btnAssetto, 0, wxEXPAND | wxALL);
 	sizerGameListInner->Add(btnEuroTruck, 0, wxEXPAND | wxALL);
@@ -144,4 +147,16 @@ void MainFrame::ShowGameList(const wxCommandEvent &evt) {
 	sizerDofTest->ShowItems(false);
 	sizerGameList->ShowItems(true);
 	sizerMain->Layout();
+}
+
+//-----------------------------------------------
+// Button click event
+//-----------------------------------------------
+void MainFrame::ClickButton(const wxCommandEvent &evt) {
+	wxLogStatus(" default click event ");
+	this->btnEuroTruck->SetBackgroundColour(wxColour(100, 100, 100));
+}
+void MainFrame::ClickButton2(const wxCommandEvent &evt) {
+	wxLogStatus(" Reset ");
+	this->btnAssetto->SetBackgroundColour(wxColour(200, 200, 200));
 }
