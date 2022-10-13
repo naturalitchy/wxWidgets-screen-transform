@@ -2,6 +2,7 @@
 #define main_frame_h
 
 #include <wx/wx.h>
+#include <wx/tglbtn.h>
 
 class MainFrame : public wxFrame {
 	private:
@@ -48,9 +49,12 @@ class MainFrame : public wxFrame {
 		void ShowDofTest(const wxCommandEvent &evt);
 
 		// Setting the default button click event.
-		void ClickButton(const wxCommandEvent &evt);
-		void ClickButton2(const wxCommandEvent &evt);
-		
+		void ResetColor(wxButton *button, const wxColour color);
+		void ClickButton(wxMouseEvent &evt);
+
+		// Setting the button mouse hover event.
+		void HoverMouseButton(wxMouseEvent &evt);
+		void LeaveMouseButton(wxMouseEvent &evt);
 
 };
 

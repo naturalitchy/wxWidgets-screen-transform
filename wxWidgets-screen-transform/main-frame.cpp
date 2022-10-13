@@ -1,4 +1,5 @@
 #include "main-frame.h"
+#include <iostream>
 
 MainFrame::MainFrame(const wxString &title)
 	: wxFrame(nullptr, wxID_ANY, title) {
@@ -39,9 +40,12 @@ MainFrame::MainFrame(const wxString &title)
 	btnAssetto = new wxButton(contentGameList, wxID_ANY, "Assetto Corsa", wxPoint(50,100), wxSize(150,50), wxBORDER_NONE);
 	btnEuroTruck = new wxButton(contentGameList, wxID_ANY, "Euro Truck", wxPoint(50, 200), wxSize(150, 50), wxBORDER_NONE);
 	//btnEuroTruck = new wxBitmapButton(contentGameList, wxID_ANY, wxBitmap(wxT("button-custom-ico.ico"), wxBITMAP_TYPE_ICO), wxPoint(50, 200), wxSize(150,50));
-	btnEuroTruck->Bind(wxEVT_BUTTON, &MainFrame::ClickButton, this);		// default click event.
-	btnAssetto->Bind(wxEVT_BUTTON, &MainFrame::ClickButton2, this);		// default click event.
+	btnAssetto->Bind(wxEVT_ENTER_WINDOW, &MainFrame::HoverMouseButton, this);
+	btnAssetto->Bind(wxEVT_LEAVE_WINDOW, &MainFrame::LeaveMouseButton, this);
+	btnEuroTruck->Bind(wxEVT_ENTER_WINDOW, &MainFrame::HoverMouseButton, this);
+	btnEuroTruck->Bind(wxEVT_LEAVE_WINDOW, &MainFrame::LeaveMouseButton, this);
 	btnAssetto->SetBackgroundColour(wxColour(50, 60, 75));
+	btnEuroTruck->SetBackgroundColour(wxColour(50, 60, 75));
 
 	/* delete code. (for free position button)
 	sizerGameListInner->Add(btnAssetto, 0, wxEXPAND | wxALL);
@@ -152,11 +156,26 @@ void MainFrame::ShowGameList(const wxCommandEvent &evt) {
 //-----------------------------------------------
 // Button click event
 //-----------------------------------------------
-void MainFrame::ClickButton(const wxCommandEvent &evt) {
-	wxLogStatus(" default click event ");
-	this->btnEuroTruck->SetBackgroundColour(wxColour(100, 100, 100));
+void MainFrame::ResetColor(wxButton *button, const wxColour color) {
+	wxLogStatus(" Reset Color !");
+	
+	button->SetBackgroundColour(color);
 }
-void MainFrame::ClickButton2(const wxCommandEvent &evt) {
-	wxLogStatus(" Reset ");
-	this->btnAssetto->SetBackgroundColour(wxColour(200, 200, 200));
+void MainFrame::ClickButton(wxMouseEvent &evt) {
+	wxLogStatus(" default click event ");
+	wxColour col = btnEuroTruck->GetBackgroundColour();
+	this->btnEuroTruck->SetBackgroundColour(wxColour(100, 100, 100));
+	
+	//MainFrame::ResetColor(btnEuroTruck, col);
+}
+
+void MainFrame::HoverMouseButton(wxMouseEvent &evt) {
+	wxLogStatus(" Hover Mouse!! ");
+
+	btn.SetBackgroundColour(wxColour(200, 200, 200));
+	//this->btnAssetto->SetBackgroundColour(wxColour(200,200,200));
+}
+void MainFrame::LeaveMouseButton(wxMouseEvent &evt) {
+	wxLogStatus(" Leave Mouse!! ");
+	this->btnAssetto->SetBackgroundColour(wxColour(50, 60, 75));
 }
