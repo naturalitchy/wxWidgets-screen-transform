@@ -39,10 +39,14 @@ class MainFrame : public wxFrame {
 		wxButton *btnEuroTruck;
 		//wxBitmapButton *btnEuroTruck;
 
-		// Setting the 6DOF Test button.
-		wxButton *btnPitchTest;
-		wxButton *btnRollTest;
-
+		// Setting the 6DOF Test slider.
+		wxStaticText *pitchText;
+		wxSlider *pitchTest;
+		wxSlider *rollTest;
+		wxSlider *yawTest;
+		wxSlider *surgeTest;
+		wxSlider *swayTest;
+		wxSlider *heaveTest;
 
 		// Setting the button event.
 		void ShowGameList(const wxCommandEvent &evt);

@@ -55,12 +55,22 @@ MainFrame::MainFrame(const wxString &title)
 	sizerGameList->Add(contentGameList, 1, wxEXPAND | wxALL);
 
 	// Create 6DOF Test Box.
-	btnPitchTest = new wxButton(contentDofTest, wxID_ANY, "Pitch Test", wxPoint(50,100), wxSize(150,50));
-	btnRollTest = new wxButton(contentDofTest, wxID_ANY, "Roll Test", wxPoint(50,200), wxSize(150,50));
-	btnPitchTest->SetBackgroundColour(wxColour(50, 60, 75));
-	btnRollTest->SetBackgroundColour(wxColour(50, 60, 75));
-	wxSlider *slider = new wxSlider(contentDofTest, wxID_ANY, 10, 0, 20, wxPoint(50,300), wxSize(300,-1));
-	slider->SetBackgroundColour(wxColour(50, 60, 75));
+	pitchTest = new wxSlider(contentDofTest, wxID_ANY, 10, 0, 20, wxPoint(50, 50), wxSize(300, -1), wxSL_MIN_MAX_LABELS);
+	pitchText = new wxStaticText(contentDofTest, wxID_ANY, "Pitch Test", wxPoint(50, 230), wxSize(300,-1), wxALIGN_CENTER_HORIZONTAL);
+	pitchTest->SetForegroundColour(*wxRED);
+	pitchText->SetForegroundColour(*wxGREEN);
+	rollTest = new wxSlider(contentDofTest, wxID_ANY, 10, 0, 20, wxPoint(50, 100), wxSize(300, -1), wxSL_MIN_MAX_LABELS);
+	yawTest = new wxSlider(contentDofTest, wxID_ANY, 10, 0, 20, wxPoint(50, 150), wxSize(300, -1), wxSL_MIN_MAX_LABELS);
+	surgeTest = new wxSlider(contentDofTest, wxID_ANY, 10, 0, 20, wxPoint(50, 200), wxSize(300, -1), wxSL_MIN_MAX_LABELS);
+	swayTest = new wxSlider(contentDofTest, wxID_ANY, 10, 0, 20, wxPoint(50, 250), wxSize(300, -1), wxSL_MIN_MAX_LABELS);
+	heaveTest = new wxSlider(contentDofTest, wxID_ANY, 10, 0, 20, wxPoint(50, 300), wxSize(300, -1), wxSL_MIN_MAX_LABELS);
+	pitchTest->SetBackgroundColour(wxColour(40, 40, 45));
+	pitchText->SetBackgroundColour(wxColour(40, 40, 45));
+	rollTest->SetBackgroundColour(wxColour(40, 40, 45));
+	yawTest->SetBackgroundColour(wxColour(40, 40, 45));
+	surgeTest->SetBackgroundColour(wxColour(40, 40, 45));
+	swayTest->SetBackgroundColour(wxColour(40, 40, 45));
+	heaveTest->SetBackgroundColour(wxColour(40, 40, 45));
 	//slider->SetBackgroundColour(wxBG_STYLE_TRANSPARENT);
 
 	/* delete code. (for free position button) 
