@@ -55,11 +55,19 @@ MainFrame::MainFrame(const wxString &title)
 	sizerGameList->Add(contentGameList, 1, wxEXPAND | wxALL);
 
 	// Create 6DOF Test Box.
-	btnPitchTest = new wxButton(contentDofTest, wxID_ANY, "Pitch Test", wxDefaultPosition, wxSize(50,100));
-	btnRollTest = new wxButton(contentDofTest, wxID_ANY, "Roll Test", wxDefaultPosition, wxSize(50,100));
+	btnPitchTest = new wxButton(contentDofTest, wxID_ANY, "Pitch Test", wxPoint(50,100), wxSize(150,50));
+	btnRollTest = new wxButton(contentDofTest, wxID_ANY, "Roll Test", wxPoint(50,200), wxSize(150,50));
+	btnPitchTest->SetBackgroundColour(wxColour(50, 60, 75));
+	btnRollTest->SetBackgroundColour(wxColour(50, 60, 75));
+	wxSlider *slider = new wxSlider(contentDofTest, wxID_ANY, 10, 0, 20, wxPoint(50,300), wxSize(300,-1));
+	slider->SetBackgroundColour(wxColour(50, 60, 75));
+	//slider->SetBackgroundColour(wxBG_STYLE_TRANSPARENT);
+
+	/* delete code. (for free position button) 
 	sizerDofTestInner->Add(btnPitchTest, 0, wxEXPAND | wxALL, 10);
 	sizerDofTestInner->Add(btnRollTest, 0, wxEXPAND | wxALL , 10);
 	contentDofTest->SetSizer(sizerDofTestInner);
+	*/
 	sizerDofTest->Add(contentDofTest, 1, wxEXPAND | wxALL);
 	sizerDofTest->ShowItems(false);									// for only show "Game List"
 
@@ -169,11 +177,12 @@ void MainFrame::ClickButton(wxMouseEvent &evt) {
 	//MainFrame::ResetColor(btnEuroTruck, col);
 }
 
+
+// TODO: 아래의 Hover / Leave를 공통 함수로 사용해야 한다.
+// 다시 말해, event object에서 해당 이벤트가 발생한 버튼객체를 가져와서 백그라운드 적용.
 void MainFrame::HoverMouseButton(wxMouseEvent &evt) {
 	wxLogStatus(" Hover Mouse!! ");
-
-	btn.SetBackgroundColour(wxColour(200, 200, 200));
-	//this->btnAssetto->SetBackgroundColour(wxColour(200,200,200));
+	this->btnAssetto->SetBackgroundColour(wxColour(200,200,200));
 }
 void MainFrame::LeaveMouseButton(wxMouseEvent &evt) {
 	wxLogStatus(" Leave Mouse!! ");
